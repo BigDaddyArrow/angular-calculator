@@ -2,35 +2,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer components {
-  .app-container {
-    @apply flex min-h-screen min-w-full items-center justify-center bg-teal-900 px-5 py-5;
-  }
-
-  .calc-container {
-    @apply relative mx-auto w-full max-w-[350px] overflow-hidden rounded-xl text-gray-800 shadow-xl;
-  }
-
-  .calc-title {
-    @apply py-10 text-center text-3xl font-bold text-white;
-  }
-
-  .calc-screen {
-    @apply h-40 w-full bg-gradient-to-b from-gray-800 to-gray-700 text-right;
-  }
-
-  .screen {
-    @apply w-full font-thin text-white;
-  }
-
-  .num-screen {
-    @extend .screen;
-    @apply px-5 py-6 text-6xl;
-  }
-
-  .func-screen {
-    @extend .screen;
-    @apply px-6 py-5 text-2xl;
-  }
-}

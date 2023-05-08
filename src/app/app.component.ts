@@ -8,9 +8,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   calValue: number = 0;
   funcT: any = '';
-  calNumber: string = 'noValue';
+  calNumber: string = '';
   firstNumber: number = 0;
   secondNumber: number = 0;
+  numPad: Array<String>;
+
+  constructor() {
+    this.numPad = [];
+  }
 
   onClickValue(val: string, type: any) {
     if (type === 'number') {
@@ -25,15 +30,16 @@ export class AppComponent {
     this.secondNumber = 0;
     this.calValue = 0;
     this.funcT = '';
-    this.calNumber = 'noValue';
+    this.calNumber = '';
   }
 
   private onNumberClick(val: string) {
-    if (this.calNumber != 'noValue') {
-      this.calNumber = this.calNumber + val;
-    } else {
-      this.calNumber = val;
-    }
+    // if (this.calNumber != '') {
+    //   this.calNumber = this.calNumber + val;
+    // } else {
+    //   this.calNumber = val;
+    // }
+    this.calNumber += val;
 
     this.calValue = parseFloat(this.calNumber);
   }
@@ -47,7 +53,7 @@ export class AppComponent {
     if (this.funcT === '') {
       this.firstNumber = this.calValue;
       this.calValue = 0;
-      this.calNumber = 'noValue';
+      this.calNumber = '';
       this.funcT = val;
     } else if (this.funcT !== '') {
       this.secondNumber = this.calValue;
