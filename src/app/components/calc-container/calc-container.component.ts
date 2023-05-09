@@ -2,14 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-calc-container',
-  template: `
-    <p>
-      calc-container works!
-    </p>
-  `,
-  styles: [
-  ]
+  templateUrl: './calc-container.component.html',
 })
-export class CalcContainerComponent {
-
-}
+export class ContainerComponent {}

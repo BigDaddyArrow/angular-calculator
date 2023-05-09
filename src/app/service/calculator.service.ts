@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Calculator } from '../model/calculator.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class CalculatorService {
-
-  constructor() { }
+export class CalculatorService extends Calculator {
+  constructor() {
+    super();
+    console.log('Calculator initialized!');
+  }
 }

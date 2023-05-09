@@ -6,6 +6,7 @@ export enum CalcFunction {
   DIVIDE = '/',
   PERCENT = '%',
   RESET = 'c',
+  UNDO = '⎌',
   EQUAL = '=',
 }
 
@@ -24,23 +25,24 @@ export enum CalcNumber {
   DECIMAL = '.',
 }
 
-export enum ClickType {
-  FUNCTION = 'FUNCTION',
-  NUMBER = 'NUMBER',
-}
+// export enum ClickType {
+//   FUNCTION = 'FUNCTION',
+//   NUMBER = 'NUMBER',
+// }
 
-export interface IClick {
-  value: CalcFunction | CalcNumber;
-  type: ClickType;
-  cellWidth: number;
-}
+// export interface IClick {
+//   value: CalcFunction | CalcNumber;
+//   type: ClickType;
+//   cellWidth: number;
+// }
 
-export declare type Click = IClick;
+// export declare type Click = IClick;
 
 // The order in which the symbols appear in the numpad
 export function getClickSort(): Array<CalcFunction | CalcNumber> {
   return [
     CalcFunction.RESET,
+    CalcFunction.UNDO,
     CalcFunction.PERCENT,
     CalcFunction.DIVIDE,
     CalcNumber.SEVEN,
