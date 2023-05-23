@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  CalcFunction,
-  CalcNumber,
-  getClickSort,
-} from 'src/app/model/click.model';
+import { CalcBase, getClickSort } from 'src/app/model/click.model';
 import { CalculatorService } from 'src/app/service/calculator.service';
 
 @Component({
@@ -14,7 +10,7 @@ export class NumpadComponent {
   protected buttons = getClickSort();
   constructor(public calculator: CalculatorService) {}
 
-  protected calcAction(button: CalcFunction | CalcNumber) {
+  protected calcAction(button: CalcBase) {
     this.calculator.action(button);
   }
 }

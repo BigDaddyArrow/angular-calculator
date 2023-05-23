@@ -25,21 +25,10 @@ export enum CalcNumber {
   DECIMAL = '.',
 }
 
-// export enum ClickType {
-//   FUNCTION = 'FUNCTION',
-//   NUMBER = 'NUMBER',
-// }
-
-// export interface IClick {
-//   value: CalcFunction | CalcNumber;
-//   type: ClickType;
-//   cellWidth: number;
-// }
-
-// export declare type Click = IClick;
+export type CalcBase = CalcNumber | CalcFunction;
 
 // The order in which the symbols appear in the numpad
-export function getClickSort(): Array<CalcFunction | CalcNumber> {
+export function getClickSort(): Array<CalcBase> {
   return [
     CalcFunction.RESET,
     CalcFunction.UNDO,
