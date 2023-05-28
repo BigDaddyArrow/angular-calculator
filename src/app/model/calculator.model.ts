@@ -11,6 +11,7 @@ export class Calculator {
   public calcValue: CalcBase | string = '';
   public resultValue: number = 0;
   private currentValue: string = '';
+  public equalBlock: boolean = false;
 
   constructor() {}
 
@@ -25,24 +26,65 @@ export class Calculator {
 
   private appendNumber(value: CalcNumber) {
     if (this.currentValue.length < this.MAX_VALUE_SIZE) {
+      if (this.equalBlock) {
+        this.calcValue = '';
+      }
       if (value == CalcNumber.DECIMAL) {
         this.appendDecimal();
       } else {
         this.currentValue += value;
         this.calcValue += value;
       }
-      console.log('calcValue: ', this.calcValue);
-      console.log('currentValue: ', this.currentValue);
 
-      this.resultValue = eval(this.currentValue);
+      this.resultValue = eval(this.calcValue);
+      this.equalBlock = false;
     }
   }
 
   private appendFunction(value: CalcFunction) {
+    if (
+      [
+        CalcFunction.MINUS,
+        CalcFunction.MULTIPLY,
+        CalcFunction.PLUS,
+        CalcFunction.DIVIDE,
+      ].includes(this.calcValue.slice(-1) as CalcFunction)
+    ) {
+      this.calcValue = this.calcValue.slice(0, -1);
+    }
     if (value == CalcFunction.RESET) {
       this.calcValue = '';
       this.resultValue = 0;
       this.currentValue = '';
+      this.equalBlock = false;
+    } else if (value == CalcFunction.UNDO && !this.equalBlock) {
+      this.currentValue = this.currentValue.slice(0, -1);
+      this.calcValue = this.calcValue.slice(0, -1);
+      this.equalBlock = false;
+      this.resultValue = eval(this.currentValue);
+    } else if (value == CalcFunction.PERCENT) {
+      this.calcValue = eval(this.calcValue + '/100').toString();
+      this.currentValue = this.calcValue;
+      this.resultValue = eval(this.calcValue);
+      this.equalBlock = false;
+    } else if (value == CalcFunction.EQUAL) {
+      this.calcValue = eval(this.calcValue).toString();
+      this.currentValue = '';
+      this.equalBlock = true;
+    } else if (
+      [
+        CalcFunction.MINUS,
+        CalcFunction.MULTIPLY,
+        CalcFunction.PLUS,
+        CalcFunction.DIVIDE,
+      ].includes(value as CalcFunction)
+    ) {
+      this.currentValue = '';
+
+      this.calcValue = eval(this.calcValue);
+      this.resultValue = eval(this.calcValue);
+      this.calcValue += value;
+      this.equalBlock = false;
     }
   }
 
